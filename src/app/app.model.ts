@@ -4,9 +4,7 @@ export class AppModel {
     public title?: string,
     public checked: boolean = false,
     public category?: Category,
-    public text?: string
-    ) {
-    
+    public text?: string) {
   }
 }
 
@@ -15,4 +13,11 @@ export enum Category {
   HOUSE = 'HOUSE',
   SHOPPING = 'SHOPPING',
   TRAVEL = 'TRAVEL'
+}
+
+export interface AppInterface {
+  title?: string;
+  checked?: boolean;
+  category?: string;
+  text?: string;
 }
