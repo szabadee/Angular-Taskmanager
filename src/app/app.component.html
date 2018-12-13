@@ -1,17 +1,29 @@
 <form>
 <div>
   <label for="Title">Title: </label>
-  <input type="title" name="title" id="title" [(ngModel)]="appModel.title">
+  <input [disabled] = "appModel.checked" type="title" name="title" id="title" [(ngModel)]="appModel.title">
+  <p>{{ appModel.tilte }}</p>
   <label for="Checked">Checked: </label>
   <input type="checkbox" name="checked" id="checked" [(ngModel)]="appModel.checked">
+  <p>{{ appModel.checked }}</p>
+  <!-- <div [ngStyle]="{'backgound-color':getColor(appModel.checked)}"></div>
+  <div [ngClass]="{'danger': appModel.checked}"></div> -->
   <label for="categories">Category: </label>
   <select name="categories" id="categories" [(ngModel)]="appModel.category">
     <option value="kaja">kaja</option>
     <option value="pia">pia</option>
     <option value="nők">nők</option>
   </select>
+  <label *ngIf = "appModel.category"> @</label>
+  <p>{{ appModel.category }}</p>
   <label for="Text">Text: </label>
   <input type="text" name="text" id="text" [(ngModel)]="appModel.text">
+  <p>{{ appModel.text }}</p>
 </div>
 <button (click)="showAppModelValue()">Show me what you got!</button>
 </form>
+
+<!-- - disabled
+- value
+- ngIf
+- email regexp suffix .com -->

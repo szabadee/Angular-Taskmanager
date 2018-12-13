@@ -23,5 +23,9 @@ export class AppComponent {
     this.appModel.checked = !!isChecked;
   }
 
+  getColor(checked: boolean) {
+    return checked ? 'red' : 'green';
+  }
+
 }
 
