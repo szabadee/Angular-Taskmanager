@@ -6,11 +6,14 @@ import { AppModel, AppInterface } from './app.model';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
   
   public appModel = new AppModel();
 
   public appImpl: AppInterface = <AppInterface>{};
+
+  public regexp = /^[A-Z]/;
 
   constructor() {
   }
@@ -23,8 +26,18 @@ export class AppComponent {
     this.appModel.checked = !!isChecked;
   }
 
-  getColor(checked: boolean) {
+  public getColor(checked: boolean) {
     return checked ? 'red' : 'green';
+  }
+
+  public nameChecker(name: string) {
+    const regexp = /^[A-Z]/;
+    return regexp.test(name) ? name : alert('The first letter should be uppercase!');
+  }
+
+  public emailChecker(email: string) {
+    const regexp = /^\w+@[a-zA-Z_]+?\.com[a-zA-Z]{2,3}$/;
+    return regexp.test(email) ? email : alert('Invalid format!');
   }
 
 }

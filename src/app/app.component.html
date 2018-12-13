@@ -19,9 +19,35 @@
   <label for="Text">Text: </label>
   <input type="text" name="text" id="text" [(ngModel)]="appModel.text">
   <p>{{ appModel.text }}</p>
+  <button (click)="showAppModelValue()">Show me what you got!</button>
+
 </div>
-<button (click)="showAppModelValue()">Show me what you got!</button>
+<hr>
+<br>
+<br>
+<div style="text-align:center">
+<label class="font" for="Name">Name </label>
+<br>
+<input class="input" placeholder="Start with uppercase" type="name" name="name" id="name" [(ngModel)]="appModel.name">
+<br>
+<label *ngIf="appModel.name && appModel.name[0] !== appModel.name[0].toUpperCase()" class="alert">The first letter should be uppercase!</label>
+<br>
+<br>
+<label class="font" for="Email">Email </label>
+<br>
+<input class="input" placeholder="somebody@domain.com" type="email" name="email" id="email" [(ngModel)]="appModel.email">
+<br>
+<label *ngIf="appModel.eamil && emailChecker(appModel.email)" class="alert">Invalid format!</label>
+<br>
+<label class="font" for="Password">Password </label>
+<br>
+<input class="input" placeholder="It could be weak, medium or strong" type="password" name="password" id="password" [(ngModel)]="appModel.password">
+<br>
+<br>
+<button class="button" (click)="showAppModelValue()">Send</button>
+</div>
 </form>
+
 
 <!-- - disabled
 - value
