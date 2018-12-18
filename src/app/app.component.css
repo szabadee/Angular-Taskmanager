@@ -27,3 +27,7 @@
   border: none;
   font-size: 14px;
 }
+
+.passwordWeak {
+  background-color: red;
+}

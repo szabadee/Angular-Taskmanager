@@ -1,47 +1,30 @@
-<form>
-<div>
-  <label for="Title">Title: </label>
-  <input [disabled] = "appModel.checked" type="title" name="title" id="title" [(ngModel)]="appModel.title">
-  <p>{{ appModel.tilte }}</p>
-  <label for="Checked">Checked: </label>
-  <input type="checkbox" name="checked" id="checked" [(ngModel)]="appModel.checked">
-  <p>{{ appModel.checked }}</p>
-  <!-- <div [ngStyle]="{'backgound-color':getColor(appModel.checked)}"></div>
-  <div [ngClass]="{'danger': appModel.checked}"></div> -->
-  <label for="categories">Category: </label>
-  <select name="categories" id="categories" [(ngModel)]="appModel.category">
-    <option value="kaja">kaja</option>
-    <option value="pia">pia</option>
-    <option value="nők">nők</option>
-  </select>
-  <label *ngIf = "appModel.category"> @</label>
-  <p>{{ appModel.category }}</p>
-  <label for="Text">Text: </label>
-  <input type="text" name="text" id="text" [(ngModel)]="appModel.text">
-  <p>{{ appModel.text }}</p>
-  <button (click)="showAppModelValue()">Show me what you got!</button>
+<h1>Task Manager</h1>
 
-</div>
+<app-create-edit-task [model]="taskModel"></app-create-edit-task>
+
+<form>
 <hr>
 <br>
 <br>
 <div style="text-align:center">
 <label class="font" for="Name">Name </label>
 <br>
-<input class="input" placeholder="Start with uppercase" type="name" name="name" id="name" [(ngModel)]="appModel.name">
+<input class="input" placeholder="Start with uppercase" type="name" name="name" id="name" [(ngModel)]="appModel.name" (blur)="validateName($event)">
 <br>
-<label *ngIf="appModel.name && appModel.name[0] !== appModel.name[0].toUpperCase()" class="alert">The first letter should be uppercase!</label>
+<p *ngIf="!nameChecker(appModel.name)" class="alert">The first letter should be uppercase!</p>
 <br>
 <br>
 <label class="font" for="Email">Email </label>
 <br>
-<input class="input" placeholder="somebody@domain.com" type="email" name="email" id="email" [(ngModel)]="appModel.email">
+<input class="input" placeholder="somebody@domain.com" type="email" name="email" id="email" [(ngModel)]="appModel.email" (change)="validateEmail($event)">
 <br>
-<label *ngIf="appModel.eamil && emailChecker(appModel.email)" class="alert">Invalid format!</label>
+<p *ngIf="appModel.email && !emailChecker(appModel.email)" class="alert">Invalid format!</p>
+<br>
 <br>
 <label class="font" for="Password">Password </label>
 <br>
-<input class="input" placeholder="It could be weak, medium or strong" type="password" name="password" id="password" [(ngModel)]="appModel.password">
+<input class="input" placeholder="It could be weak, medium or strong" type="password" name="password" id="password" [(ngModel)]="appModel.password" [ngClass]="{'passwordWeak': passwordChecker(!appModel.password)}">
+<br>
 <br>
 <br>
 <button class="button" (click)="showAppModelValue()">Send</button>
